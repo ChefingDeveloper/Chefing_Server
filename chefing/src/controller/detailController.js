@@ -6,14 +6,12 @@ const detailData = require('../models/detailModel')
 exports.getMainMenuList = async (req, res) => {
     console.log('detail main menu in')
     const connection = await dbConnection()
-    let mainMenuResult
     const { chef_id } = req.params
-
+    let mainMenuResult
     let data = {}
     data = {
         chef_id,
     }
-
     try {
 
         mainMenuResult = await detailData.getDetailMainMenu(connection, data)
