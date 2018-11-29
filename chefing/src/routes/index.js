@@ -1,11 +1,11 @@
 const express = require('express');
 
+// 1. main
+const main = require('./main');
 
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log('chefing home');
-});
+router.use('/main',main);
 
-module.exports = router;
+module.exports = router
