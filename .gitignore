@@ -62,3 +62,5 @@ typings/
 chefing/config/aws_config.json
 chefing/config/credentials.json
 chefing/config/dbConfig.js
+chefing/src/configAll.js
+chefing/src/lib/dbConnection.js

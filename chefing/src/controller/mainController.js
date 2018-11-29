@@ -7,7 +7,7 @@ exports.getMainList = async (req, res) => {
   const connection = await dbConnection()
   let mainResult // 메뉴리스트
   try {
-    [mainResult] = await mainData.getMainList(connection)
+    mainResult = await mainData.getMainList(connection)
     respondJson('success', mainResult, res, 200)
   } catch (e) {
 
