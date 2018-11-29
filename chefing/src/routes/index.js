@@ -1,12 +1,12 @@
 const express = require('express');
 
 const main = require('./main'); // main : 메인화면 메뉴리스트
-const detail = require('./detail'); // detail : 메뉴 상세화면 ( main, side )
+const detail = require('./detail'); // detail : 메뉴 상세화면 ( 메뉴 탭, 매장 탭, 셰프 탭 정보 불러오기 )
 
 /* GET home page. */
 const router = express.Router();
 
-router.use('/main',main);
+router.use('/main',main); 
 router.use('/detail',detail);
 
 module.exports = router
