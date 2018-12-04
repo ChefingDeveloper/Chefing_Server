@@ -50,4 +50,16 @@ exports.addUser= (connection,data)=> {
   })
 }
 
+// 3. 토큰 값 변경
+exports.updateToken =(connection, user_token, user_id)=> {
+  return new Promise((resolve, reject)=> {
+    const Query = `UPDATE USER SET user_token=${user_token}
+                   WHERE user_id=${user_id}`
+    connection.query(Query, [user_token, user_id], (err, result)=> {
+      err && reject(err)
+      resolve(result)
+    })               
+  })
+}
+
 

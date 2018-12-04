@@ -129,6 +129,7 @@ exports.signin = async(req, res) => {
 
   let getUserInfoResult
   let addUserResult
+  let updateTokenResult
 
   let user_token = req.body.user_token;
 
@@ -169,9 +170,13 @@ exports.signin = async(req, res) => {
     // 만약 회원 정보가 없다면,
     if(getUserInfoResult==null){
       addUserResult = await accountModel.addUser(connection,data)
-      respondJson('success', getUserInfoResult, res, 200)
-    }else {
-      respondJson('success', getUserInfoResult, res, 200)
+      respondJson('success sign up', getUserInfoResult, res, 200)
+    }else if(getUserInfoResult[0].user_token != user_token){ // 로그아웃 후 로그인 시
+      updateTokenResult = await accountModel.updateToken(connection, user_token, user_id)
+      respondJson('new token',getUserInfoResult, res, 200)
+    }
+    else {
+      respondJson('success login', getUserInfoResult, res, 200)
     }
     
   } catch (e) {
