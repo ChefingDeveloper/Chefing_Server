@@ -1,3 +1,4 @@
+// jwt 적용
 exports.checkEmail = (connection, user_id) => {
   return new Promise((resolve, reject)=> {
     const Query = `SELECT *
@@ -10,6 +11,7 @@ exports.checkEmail = (connection, user_id) => {
   })
 }
 
+// jwt 적용
 exports.inserUserData = (connection, data) => {
   return new Promise((resolve, reject) => {
     const Query = `INSERT INTO
@@ -21,3 +23,31 @@ exports.inserUserData = (connection, data) => {
     })
   })
 }
+
+/************ jwt 미적용 **************/
+
+// 1. 토큰 가져오기
+exports.getUserInfo = (connection, user_token) => {
+  return new Promise((resolve, reject)=> {
+    const Query = `SELECT * FROM USER where user_token=?`
+    connection.query(Query,[user_token],(err, result)=> {
+      err && reject(err)
+      resolve(result)
+    })
+  })
+}
+
+// 2. 유저 등록
+exports.addUser= (connection,data)=> {
+  return new Promise((resolve, reject)=> {
+    const Query = `INSERT INTO
+                   USER(user_id, user_token, user_nickname, user_profile)
+                   VALUES (?,?,?,?)`
+    connection.query(Query, [data.user_id, data.user_token, data.user_nickname, data.user_profile],(err, result)=> {
+      err && reject(err)
+      resolve(result)
+    })
+  })
+}
+
+
