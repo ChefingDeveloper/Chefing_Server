@@ -64,3 +64,5 @@ chefing/config/credentials.json
 chefing/config/dbConfig.js
 chefing/src/configAll.js
 chefing/src/lib/dbConnection.js
+chefing/config/secretKey.js
+chefing/src/lib/token.js

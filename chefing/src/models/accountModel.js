@@ -1,9 +1,9 @@
-exports.checkEmail = (connection, user_email) => {
+exports.checkEmail = (connection, user_id) => {
   return new Promise((resolve, reject)=> {
     const Query = `SELECT *
                    FROM USER
-                   WHERE user_email=?`
-    connection.query(Query,[user_email],(err, result)=> {
+                   WHERE user_id=?`
+    connection.query(Query,[user_id],(err, result)=> {
       err && reject(err)
       resolve(result)
     })
