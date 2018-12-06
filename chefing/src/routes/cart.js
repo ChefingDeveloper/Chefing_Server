@@ -6,6 +6,9 @@ const cart = express.Router()
 // 1. 장바구니 추가
 cart.post('/addcart', cartCtrl.addCart)
 
+// 1-2. 장바구니 중복체크
+cart.post('/doublecheck', cartCtrl.doublecheck)
+
 
 // 2. 장바구니 리스트
 cart.post('/getcart', cartCtrl.getCart)

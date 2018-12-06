@@ -38,6 +38,35 @@ exports.addCart = async (req, res)=> {
     }
 }
 
+// 1-2. 장바구니 중복체크
+exports.doublecheck = async (req, res) => {
+    const connection = await dbConnection()
+    const { user_id } = req.body
+    const { menu_id } = req.body
+
+    let doubleCheckResult
+    let data = {}
+    data ={
+
+        user_id,
+        menu_id,
+    }
+
+    try {
+
+        doubleCheckResult = await cartData.doublecheck(connection, data)
+        if(doubleCheckResult.data==null){
+            respondJson('success', doubleCheckResult, res, 200)
+        }
+        
+        
+    } catch (e) {
+        respondOnError(e.message, res, 500)
+    } finally {
+        connection.release()
+    }
+}
+
 // 2. 장바구니 리스트
 exports.getCart = async (req, res)=> {
     const connection = await dbConnection()
