@@ -55,9 +55,10 @@ exports.doublecheck = async (req, res) => {
     try {
 
         doubleCheckResult = await cartData.doublecheck(connection, data)
-        if(doubleCheckResult.data==null){
-            respondJson('success', doubleCheckResult, res, 200)
-        }
+            res.status(200).send({
+                message: "success",
+                menu_id: doubleCheckResult[0].menu_id
+            })
         
         
     } catch (e) {
