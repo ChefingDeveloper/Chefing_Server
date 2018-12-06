@@ -63,6 +63,7 @@ exports.doublecheck = async (req, res) => {
         
     } catch (e) {
         respondOnError(e.message, res, 500)
+        console.log('error message: '+e);
     } finally {
         connection.release()
     }
