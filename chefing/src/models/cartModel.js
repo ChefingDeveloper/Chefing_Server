@@ -57,3 +57,18 @@ exports.deleteCart = (connection, cart_id)=> {
         })
     })
 }
+
+// 4. 레스토랑 아이디 가져오기
+exports.getShopId = (connection, menu_id)=> {
+    return new Promise((resolve, reject)=> {
+        const Query= `
+        SELECT shop_id
+        FROM MENU
+        WHERE menu_id=${menu_id}
+        `
+        connection.query(Query, [menu_id], (err, result)=> {
+            err && reject(err)
+            resolve(result)
+        })
+    })
+}

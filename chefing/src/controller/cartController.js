@@ -111,3 +111,23 @@ exports.deleteCart = async (req, res)=> {
 
     }
 }
+
+// 4. 레스토랑 아이디 가져오기
+exports.getShopId = async(req, res)=> {
+    const connection = await dbConnection()
+    const { menu_id } = req.params
+    let getShopIdResult
+
+    try {
+
+        getShopIdResult = await cartData.getShopId(connection, menu_id)
+        respondJson('success', getShopIdResult, res, 200)
+        
+    } catch (e) {
+
+        respondOnError(e.message, res, 500)
+        
+    } finally {
+        connection.release()
+    }
+}

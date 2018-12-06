@@ -17,4 +17,8 @@ cart.post('/getcart', cartCtrl.getCart)
 // 3. 장바구니 삭제
 cart.delete('/deletecart/:cart_id', cartCtrl.deleteCart)
 
+
+// 4. 레스토랑 아이디 가져오기
+cart.get('/getshopid/:menu_id', cartCtrl.getShopId)
+
 module.exports=cart
