@@ -15,6 +15,20 @@ exports.addCart = (connection, data)=> {
     })
 }
 
+// 1-2. 장바구니 중복체크
+exports.doublecheck = (connection, data)=> {
+    return new Promise((resolve, reject)=> {
+        const Query=`
+        SELECT * FROM CART
+        WHERE user_id=${data.user_id} AND menu_id=${data.menu_id}
+        `
+        connection.query(Query,(err, result)=> {
+            err && reject(err)
+            resolve(result)
+        })
+    })
+}
+
 // 2. 장바구니 리스트
 exports.getCart = (connection, user_id)=> {
     return new Promise((resolve, reject)=> {
