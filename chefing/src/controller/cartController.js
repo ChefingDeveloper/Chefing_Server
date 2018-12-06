@@ -55,10 +55,20 @@ exports.doublecheck = async (req, res) => {
     try {
 
         doubleCheckResult = await cartData.doublecheck(connection, data)
+        if(doubleCheckResult[0]==null){
+            console.log('장바구니 중복 안됨')
             res.status(200).send({
                 message: "success",
-                menu_id: doubleCheckResult[0].menu_id
+                duplicate_id: 0
             })
+        }else{
+            console.log('장바구니 중복 됨')
+            res.status(200).send({
+                message: "duplicate",
+                duplicate_id: 1
+            })
+        }
+           
         
         
     } catch (e) {
